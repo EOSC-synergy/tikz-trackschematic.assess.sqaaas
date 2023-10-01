@@ -1,0 +1,58 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/railtoolkit/tikz-trackschematic:
+      branch: master
+      repo: https://github.com/railtoolkit/tikz-trackschematic
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/railtoolkit/tikz-trackschematic git:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-brown-mau.sh
+        container: qc.acc_snoopy-tomato-zebu
+  QC.Doc:
+    repos:
+      github.com/railtoolkit/tikz-trackschematic find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.queasy-ruby-sponge.sh
+        container: qc.doc_hilly-goldenrod-mammoth
+      github.com/railtoolkit/tikz-trackschematic git:
+        commands:
+        - /usr/bin/env sh .sqa/script.ugly-ivory-chamois.sh
+        container: qc.doc_goopy-green-cuscus
+      github.com/railtoolkit/tikz-trackschematic markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.hilly-magenta-mule.sh
+        container: qc.doc_scanty-dandelion-sheep
+  QC.Lic:
+    repos:
+      github.com/railtoolkit/tikz-trackschematic licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.snappy-brown-urchin.sh
+        container: qc.lic_shaggy-aqua-chamois
+  QC.Met:
+    repos:
+      github.com/railtoolkit/tikz-trackschematic cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.blurry-firebrick-skunk.sh
+        container: qc.met_randy-cerulean-retriever
+  QC.Sty:
+    repos:
+      github.com/railtoolkit/tikz-trackschematic jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.bluesy-gold-centipede.sh
+        container: qc.sty_clammy-cinnabar-panda
+  QC.Ver:
+    repos:
+      github.com/railtoolkit/tikz-trackschematic get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.stinky-turquoise-saola.sh
+        container: qc.ver_hasty-malachite-gharial
+timeout: 5400
